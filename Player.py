@@ -41,7 +41,9 @@ class Player:
                 print("{}: 21!!!".format(self.__name))
                 return self.count_hand()
             else:
-                print("{0}: Your final hand: {1}\n{0}: Your score: {2}".format(self.__name, (self.show_hand() for card in self.__hand), self.count_hand()))
+                print("{}: Your final hand:".format(self.get_name()))
+                self.show_hand()
+                print("{}: sum of the cards in your hand is: {}".format(self.get_name(), self.count_hand()))
                 return self.count_hand()
 
     def show_hand(self):
@@ -84,10 +86,10 @@ class Player:
             elif card.get_number() == 'K':
                 sum_in_hand += 10
         if number_of_aces == 2:
-            sum_in_hand += 11
+            sum_in_hand += 12
         elif number_of_aces == 1:
-            if sum_in_hand + 10 <= 21:
-                sum_in_hand += 10
+            if sum_in_hand + 11 <= 21:
+                sum_in_hand += 11
             else:
                 sum_in_hand += 1
         return sum_in_hand
@@ -104,3 +106,6 @@ class Player:
 
     def get_name(self):
         return self.__name
+
+    def clear_hand(self):
+        self.__hand.clear()
